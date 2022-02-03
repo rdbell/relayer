@@ -1,4 +1,4 @@
-module github.com/fiatjaf/relayer
+module github.com/rdbell/relayer
 
 go 1.15
 
