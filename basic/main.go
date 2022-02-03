@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/fiatjaf/relayer"
 	"github.com/jmoiron/sqlx"
 	"github.com/jmoiron/sqlx/reflectx"
 	"github.com/kelseyhightower/envconfig"
+	"github.com/rdbell/relayer"
 )
 
 type BasicRelay struct {

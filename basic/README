@@ -19,6 +19,6 @@ compiling
 
 if you know Go you already know this:
 
-    go get github.com/fiatjaf/relayer/basic
+    go get github.com/rdbell/relayer/basic
 
 or something like that.
