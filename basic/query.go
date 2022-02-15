@@ -140,7 +140,7 @@ func (b *BasicRelay) QueryEvents(
       id, pubkey, created_at, kind, tags, content, sig
     FROM event WHERE ` +
 		strings.Join(conditions, " AND ") +
-		" ORDER BY created_at LIMIT 100")
+		" ORDER BY created_at")
 
 	err = b.DB.Select(&events, query, params...)
 	if err != nil && err != sql.ErrNoRows {

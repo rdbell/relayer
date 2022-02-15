@@ -11,7 +11,7 @@ import (
 
 func (b *BasicRelay) SaveEvent(evt *nostr.Event) error {
 	// disallow large contents
-	if len(evt.Content) > 1000 {
+	if len(evt.Content) > 10000 {
 		return errors.New("event content too large")
 	}
 
@@ -27,13 +27,6 @@ func (b *BasicRelay) SaveEvent(evt *nostr.Event) error {
 	case nostr.KindContactList:
 		// delete past contact lists from this same pubkey
 		b.DB.Exec(`DELETE FROM event WHERE pubkey = $1 AND kind = 3`, evt.PubKey)
-	default:
-		// delete all but the 10 most recent ones
-		b.DB.Exec(`DELETE FROM event WHERE pubkey = $1 AND kind = $2 AND created_at < (
-          SELECT created_at FROM event WHERE pubkey = $1
-          ORDER BY created_at DESC OFFSET 10 LIMIT 1
-        )`,
-			evt.PubKey, evt.Kind)
 	}
 
 	// insert
